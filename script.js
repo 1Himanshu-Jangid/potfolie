@@ -403,4 +403,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   syncLiveGithub();
 
+
+  // =========================================================================
+  // GITHUB HEATMAP FLOATING TOOLTIP
+  // =========================================================================
+  const tooltip = document.getElementById('git-tooltip');
+  const cells = document.querySelectorAll('#git-heatmap-cells rect');
+
+  if (tooltip && cells.length > 0) {
+    cells.forEach(cell => {
+      cell.addEventListener('mouseenter', (e) => {
+        const count = cell.getAttribute('data-count') || '0';
+        const dateStr = cell.getAttribute('data-date') || '';
+        let formattedDate = dateStr;
+        if (dateStr) {
+          const parts = dateStr.split('-');
+          if (parts.length === 3) {
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const m = parseInt(parts[1], 10) - 1;
+            formattedDate = months[m] + ' ' + parseInt(parts[2], 10) + ', ' + parts[0];
+          }
+        }
+        tooltip.textContent = (count === '0' ? 'No' : count) + ' contributions on ' + formattedDate;
+        
+        const rect = cell.getBoundingClientRect();
+        tooltip.style.left = (rect.left + rect.width / 2) + 'px';
+        tooltip.style.top = (rect.top - 6) + 'px';
+        tooltip.style.opacity = '1';
+      });
+
+      cell.addEventListener('mouseleave', () => {
+        tooltip.style.opacity = '0';
+      });
+    });
+  }
+
 });

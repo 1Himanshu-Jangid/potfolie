@@ -10,7 +10,7 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), interest-cohort=()" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://github-contributions-api.jogruber.de; object-src 'none'; base-uri 'self'; form-action 'self';" />
 
   <!-- Google Fonts: Inter & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,7 +24,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=40.0" />
+  <link rel="stylesheet" href="styles.css?v=41.0" />
 </head>
 <body class="selection:bg-blue-500 selection:text-white">
   <!-- =========================================================================
@@ -476,7 +476,9 @@
 
             <!-- Heatmap Horizontal Scroll Container -->
             <div class="relative mt-3 git-scroll-wrapper">
-              <div id="github-graph-container" class="overflow-x-auto pb-2 scrollbar-none select-none">
+                          <!-- Apple Liquid Glass Floating Tooltip -->
+            <div id="git-tooltip" class="pointer-events-none opacity-0 transition-opacity duration-150 fixed z-[999] px-2.5 py-1 rounded-lg bg-slate-900/95 backdrop-blur-md border border-cyan-400/30 text-white text-[10px] font-mono shadow-xl shadow-cyan-950/60 whitespace-nowrap -translate-x-1/2 -translate-y-full"></div>
+            <div id="github-graph-container" class="overflow-x-auto pb-2 scrollbar-none select-none">
                 <svg viewBox="0 0 725 113" width="725" height="113" class="git-heatmap-svg overflow-visible block" xmlns="http://www.w3.org/2000/svg"><text x="28" y="11" fill="#94a3b8" font-size="9" font-family="monospace">Nov</text><text x="67" y="11" fill="#94a3b8" font-size="9" font-family="monospace">Dec</text><text x="119" y="11" fill="#94a3b8" font-size="9" font-family="monospace">Jan</text><text x="171" y="11" fill="#94a3b8" font-size="9" font-family="monospace">Feb</text><text x="223" y="11" fill="#94a3b8" font-size="9" font-family="monospace">Mar</text><text x="288" y="11" fill="#94a3b8" font-size="9" font-family="monospace">Apr</text><text x="340" y="11" fill="#94a3b8" font-size="9" font-family="monospace">May</text><text x="405" y="11" fill="#94a3b8" font-size="9" font-family="monospace">Jun</text><text x="457" y="11" fill="#94a3b8" font-size="9" font-family="monospace">Jul</text><text x="509" y="11" fill="#94a3b8" font-size="9" font-family="monospace">Aug</text><text x="574" y="11" fill="#94a3b8" font-size="9" font-family="monospace">Sep</text><text x="626" y="11" fill="#94a3b8" font-size="9" font-family="monospace">Oct</text><text x="678" y="11" fill="#94a3b8" font-size="9" font-family="monospace">Nov</text>
       <text x="3" y="39" fill="#64748b" font-size="8" font-family="monospace">Mon</text>
       <text x="3" y="65" fill="#64748b" font-size="8" font-family="monospace">Wed</text>
@@ -536,9 +538,9 @@
       <!-- Minimalist 2D Architectural City Skyline Layer (Clean Vector Landmarks, Zero Cars) -->
       <div class="city-skyline-layer">
         <!-- Desktop & Tablet Skyline (>= 640px) -->
-        <img src="city-skyline-2d.svg?v=40.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img hidden sm:block" />
+        <img src="city-skyline-2d.svg?v=41.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img hidden sm:block" />
         <!-- Mobile Skyline (< 640px) -->
-        <img src="city-skyline-mobile.svg?v=40.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img block sm:hidden" />
+        <img src="city-skyline-mobile.svg?v=41.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img block sm:hidden" />
       </div>
 
       <!-- Earth Container -->
@@ -599,7 +601,7 @@
 
   </div>
 
-  <script src="script.js?v=40.0"></script>
+  <script src="script.js?v=41.0"></script>
   <script>
     lucide.createIcons();
   </script>
