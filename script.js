@@ -476,4 +476,140 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
+  // =========================================================================
+  // APPLE LIQUID GLASS CONTACT MODAL ENGINE (Approach 2)
+  // =========================================================================
+  const contactModal = document.getElementById('contact-modal');
+  const contactCard = document.getElementById('contact-modal-card');
+  const openModalBtn = document.getElementById('open-contact-modal-btn');
+  const closeModalBtn = document.getElementById('close-contact-modal-btn');
+  const doneModalBtn = document.getElementById('done-contact-btn');
+  const contactForm = document.getElementById('direct-contact-form');
+  const formContainer = document.getElementById('contact-form-container');
+  const successContainer = document.getElementById('contact-success-container');
+  const errorMsg = document.getElementById('contact-error-msg');
+  const submitBtn = document.getElementById('submit-contact-btn');
+  const btnText = document.getElementById('btn-text');
+  const btnIcon = document.getElementById('btn-icon');
+  const btnSpinner = document.getElementById('btn-spinner');
+
+  function openModal() {
+    if (contactModal) {
+      contactModal.classList.add('modal-active');
+      document.body.style.overflow = 'hidden';
+      const nameInput = document.getElementById('contact-name');
+      if (nameInput) setTimeout(() => nameInput.focus(), 150);
+    }
+  }
+
+  function closeModal() {
+    if (contactModal) {
+      contactModal.classList.remove('modal-active');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        if (formContainer && successContainer) {
+          formContainer.classList.remove('hidden');
+          successContainer.classList.add('hidden');
+        }
+        if (contactForm) contactForm.reset();
+        if (errorMsg) errorMsg.classList.add('hidden');
+      }, 300);
+    }
+  }
+
+  if (openModalBtn) openModalBtn.addEventListener('click', openModal);
+  if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+  if (doneModalBtn) doneModalBtn.addEventListener('click', closeModal);
+
+  // Close when clicking on backdrop outside card
+  if (contactModal && contactCard) {
+    contactModal.addEventListener('click', (e) => {
+      if (!contactCard.contains(e.target)) {
+        closeModal();
+      }
+    });
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && contactModal && contactModal.classList.contains('modal-active')) {
+      closeModal();
+    }
+  });
+
+  // Handle Form Submission
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('contact-name')?.value.trim();
+      const email = document.getElementById('contact-email')?.value.trim();
+      const message = document.getElementById('contact-message')?.value.trim();
+
+      if (!name || !email || !message) {
+        if (errorMsg) {
+          errorMsg.textContent = 'Please fill out all required fields.';
+          errorMsg.classList.remove('hidden');
+        }
+        return;
+      }
+
+      // Set Loading UI
+      if (submitBtn) submitBtn.disabled = true;
+      if (btnText) btnText.textContent = 'Transmitting...';
+      if (btnIcon) btnIcon.classList.add('hidden');
+      if (btnSpinner) btnSpinner.classList.remove('hidden');
+      if (errorMsg) errorMsg.classList.add('hidden');
+
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/1himanshujangid@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            message: message,
+            _subject: 'New Portfolio Message from ' + name,
+            _template: 'table'
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && (data.success === 'true' || data.success === true || response.status === 200)) {
+          // Success State
+          if (formContainer && successContainer) {
+            formContainer.classList.add('hidden');
+            successContainer.classList.remove('hidden');
+          }
+        } else {
+          // Fallback to mailto if submission blocked
+          const mailtoFallback = 'mailto:1himanshujangid@gmail.com?subject=' + encodeURIComponent('Portfolio Inquiry from ' + name) + '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+          window.location.href = mailtoFallback;
+          if (formContainer && successContainer) {
+            formContainer.classList.add('hidden');
+            successContainer.classList.remove('hidden');
+          }
+        }
+      } catch (err) {
+        // Fallback to direct client mailto on network error
+        const mailtoFallback = 'mailto:1himanshujangid@gmail.com?subject=' + encodeURIComponent('Portfolio Inquiry from ' + name) + '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+        window.location.href = mailtoFallback;
+        if (formContainer && successContainer) {
+          formContainer.classList.add('hidden');
+          successContainer.classList.remove('hidden');
+        }
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+        if (btnText) btnText.textContent = 'Transmit Message';
+        if (btnIcon) btnIcon.classList.remove('hidden');
+        if (btnSpinner) btnSpinner.classList.add('hidden');
+      }
+    });
+  }
+
 });

@@ -1078,3 +1078,15 @@ section {
   border-color: rgba(255, 255, 255, 0.9);
   box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.12), 0 0 1px 1px rgba(255, 255, 255, 0.4);
 }
+
+/* ==========================================================================
+   Apple Liquid Glass Modal Styles (Approach 2)
+   ========================================================================== */
+#contact-modal.modal-active {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+#contact-modal.modal-active #contact-modal-card {
+  transform: scale(1) !important;
+}

@@ -10,7 +10,7 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), interest-cohort=()" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://github-contributions-api.jogruber.de; object-src 'none'; base-uri 'self'; form-action 'self';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://github-contributions-api.jogruber.de https://formsubmit.co; object-src 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co;" />
 
   <!-- Google Fonts: Inter & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,7 +24,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=42.0" />
+  <link rel="stylesheet" href="styles.css?v=43.0" />
 </head>
 <body class="selection:bg-blue-500 selection:text-white">
   <!-- =========================================================================
@@ -538,9 +538,9 @@
       <!-- Minimalist 2D Architectural City Skyline Layer (Clean Vector Landmarks, Zero Cars) -->
       <div class="city-skyline-layer">
         <!-- Desktop & Tablet Skyline (>= 640px) -->
-        <img src="city-skyline-2d.svg?v=42.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img hidden sm:block" />
+        <img src="city-skyline-2d.svg?v=43.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img hidden sm:block" />
         <!-- Mobile Skyline (< 640px) -->
-        <img src="city-skyline-mobile.svg?v=42.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img block sm:hidden" />
+        <img src="city-skyline-mobile.svg?v=43.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img block sm:hidden" />
       </div>
 
       <!-- Earth Container -->
@@ -596,10 +596,10 @@
                 </div>
                 
                 <div class="pt-3 mt-2 border-t border-slate-100 flex items-center gap-2">
-                  <a href="mailto:1himanshujangid@gmail.com" class="flex-1 py-1.5 px-3 rounded-lg bg-black text-white text-xs font-medium hover:bg-slate-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+                  <button type="button" id="open-contact-modal-btn" class="flex-1 py-1.5 px-3 rounded-lg bg-black text-white text-xs font-medium hover:bg-slate-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer">
                     <span>Send Mail</span>
                     <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                  </a>
+                  </button>
                   <button id="copy-email-btn" data-email="1himanshujangid@gmail.com" class="p-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-black transition-colors flex items-center justify-center" title="Copy Email">
                     <svg id="copy-icon" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
                     <svg id="check-icon" class="w-4 h-4 hidden text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
@@ -687,7 +687,7 @@
 
   </div>
 
-  <script src="script.js?v=42.0"></script>
+  <script src="script.js?v=43.0"></script>
   <script>
     lucide.createIcons();
   </script>
@@ -696,5 +696,96 @@
     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
     <span>Email copied to clipboard: 1himanshujangid@gmail.com</span>
   </div>
+
+  <!-- =========================================================================
+       APPLE LIQUID GLASS DIRECT TRANSMISSION MODAL (Approach 2)
+       ========================================================================= -->
+  <div id="contact-modal" class="fixed inset-0 z-[99999] bg-slate-950/75 backdrop-blur-xl flex items-center justify-center p-4 transition-all duration-300 opacity-0 pointer-events-none" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    
+    <!-- Modal Card (Apple Liquid Glass) -->
+    <div id="contact-modal-card" class="bg-white/95 sm:bg-white/92 backdrop-blur-2xl border border-white/80 shadow-2xl rounded-3xl max-w-lg w-full p-6 sm:p-8 text-slate-900 relative transition-all duration-300 scale-95 max-h-[92vh] overflow-y-auto">
+      
+      <!-- Close Button -->
+      <button type="button" id="close-contact-modal-btn" class="absolute top-5 right-5 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-black transition-colors focus:outline-none" aria-label="Close dialog">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+
+      <!-- Initial Form Container -->
+      <div id="contact-form-container" class="space-y-5">
+        <div class="space-y-1.5 pr-8">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-700 text-[11px] font-mono font-medium">
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+            <span>COMM LINK // GROUND STATION</span>
+          </div>
+          <h3 id="modal-title" class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Send a Direct Message</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Fill in your details below. Your message will be securely transmitted straight to Himanshu's personal inbox.
+          </p>
+        </div>
+
+        <form id="direct-contact-form" class="space-y-4">
+          <!-- 1. Name Field -->
+          <div class="space-y-1.5">
+            <label for="contact-name" class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-700">
+              1. Your Name <span class="text-blue-600">*</span>
+            </label>
+            <input type="text" id="contact-name" name="name" required placeholder="e.g. Alex Sharma / Recruiter" class="w-full px-4 py-3 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all font-sans" />
+          </div>
+
+          <!-- 2. Email Field -->
+          <div class="space-y-1.5">
+            <label for="contact-email" class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-700">
+              2. Your Email Address <span class="text-blue-600">*</span>
+            </label>
+            <input type="email" id="contact-email" name="email" required placeholder="e.g. alex@company.com" class="w-full px-4 py-3 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all font-sans" />
+          </div>
+
+          <!-- 3. Message Field -->
+          <div class="space-y-1.5">
+            <label for="contact-message" class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-700">
+              3. Message / Project Details <span class="text-blue-600">*</span>
+            </label>
+            <textarea id="contact-message" name="message" rows="4" required placeholder="Hi Himanshu, I saw your portfolio and would like to discuss..." class="w-full px-4 py-3 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all font-sans resize-none"></textarea>
+          </div>
+
+          <!-- Error Alert (Hidden by default) -->
+          <div id="contact-error-msg" class="hidden p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs"></div>
+
+          <!-- Submit Button -->
+          <div class="pt-2">
+            <button type="submit" id="submit-contact-btn" class="w-full py-3.5 px-6 rounded-2xl bg-black text-white text-sm font-semibold hover:bg-slate-800 transition-all shadow-lg flex items-center justify-center gap-2 border border-white/20 liquid-glass-btn cursor-pointer">
+              <span id="btn-text">Transmit Message</span>
+              <svg id="btn-icon" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+              <div id="btn-spinner" class="hidden w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+            </button>
+          </div>
+
+          <div class="text-center pt-1 text-[11px] font-mono text-slate-500">
+            Direct target: <span class="text-slate-800 font-semibold">1himanshujangid@gmail.com</span>
+          </div>
+        </form>
+      </div>
+
+      <!-- Success State Container (Hidden initially) -->
+      <div id="contact-success-container" class="hidden py-8 px-2 text-center space-y-4">
+        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-inner">
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <div class="space-y-1">
+          <h4 class="text-2xl font-bold text-slate-900">Transmission Delivered!</h4>
+          <p class="text-sm text-slate-600 max-w-sm mx-auto leading-relaxed">
+            Thank you for reaching out! Your message was sent directly to Himanshu's personal inbox. I'll get back to you shortly.
+          </p>
+        </div>
+        <div class="pt-3">
+          <button type="button" id="done-contact-btn" class="px-6 py-2.5 rounded-full bg-black text-white text-xs font-semibold hover:bg-slate-800 transition-colors shadow">
+            Done &bull; Return to Portfolio
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </body>
 </html>
