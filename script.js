@@ -478,16 +478,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // APPLE LIQUID GLASS CONTACT MODAL ENGINE (Approach 2)
+  // APPLE LIQUID GLASS CONTACT MODAL ENGINE (Approach 2 - Enhanced Delivery Engine)
   // =========================================================================
   const contactModal = document.getElementById('contact-modal');
   const contactCard = document.getElementById('contact-modal-card');
   const openModalBtn = document.getElementById('open-contact-modal-btn');
   const closeModalBtn = document.getElementById('close-contact-modal-btn');
   const doneModalBtn = document.getElementById('done-contact-btn');
+  const activationDoneBtn = document.getElementById('activation-done-btn');
   const contactForm = document.getElementById('direct-contact-form');
   const formContainer = document.getElementById('contact-form-container');
   const successContainer = document.getElementById('contact-success-container');
+  const activationContainer = document.getElementById('contact-activation-container');
+  const activationGmailLink = document.getElementById('activation-gmail-link');
+  const openGmailWebBtn = document.getElementById('open-gmail-web-btn');
   const errorMsg = document.getElementById('contact-error-msg');
   const submitBtn = document.getElementById('submit-contact-btn');
   const btnText = document.getElementById('btn-text');
@@ -508,10 +512,9 @@ document.addEventListener('DOMContentLoaded', () => {
       contactModal.classList.remove('modal-active');
       document.body.style.overflow = '';
       setTimeout(() => {
-        if (formContainer && successContainer) {
-          formContainer.classList.remove('hidden');
-          successContainer.classList.add('hidden');
-        }
+        if (formContainer) formContainer.classList.remove('hidden');
+        if (successContainer) successContainer.classList.add('hidden');
+        if (activationContainer) activationContainer.classList.add('hidden');
         if (contactForm) contactForm.reset();
         if (errorMsg) errorMsg.classList.add('hidden');
       }, 300);
@@ -521,6 +524,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (openModalBtn) openModalBtn.addEventListener('click', openModal);
   if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
   if (doneModalBtn) doneModalBtn.addEventListener('click', closeModal);
+  if (activationDoneBtn) activationDoneBtn.addEventListener('click', closeModal);
 
   // Close when clicking on backdrop outside card
   if (contactModal && contactCard) {
@@ -537,6 +541,23 @@ document.addEventListener('DOMContentLoaded', () => {
       closeModal();
     }
   });
+
+  // Direct Gmail Web button
+  function getGmailComposeUrl(name, email, message) {
+    const subject = encodeURIComponent('Portfolio Inquiry from ' + (name || 'Visitor'));
+    const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+    return 'https://mail.google.com/mail/?view=cm&fs=1&to=1himanshujangid@gmail.com&su=' + subject + '&body=' + body;
+  }
+
+  if (openGmailWebBtn) {
+    openGmailWebBtn.addEventListener('click', () => {
+      const name = document.getElementById('contact-name')?.value.trim() || 'Visitor';
+      const email = document.getElementById('contact-email')?.value.trim() || '';
+      const message = document.getElementById('contact-message')?.value.trim() || '';
+      const gmailUrl = getGmailComposeUrl(name, email, message);
+      window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+    });
+  }
 
   // Handle Form Submission
   if (contactForm) {
@@ -580,32 +601,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const data = await response.json();
 
-        if (response.ok && (data.success === 'true' || data.success === true || response.status === 200)) {
-          // Success State
+        // 1. Check if FormSubmit requires initial one-time activation
+        if (data && data.message && data.message.toLowerCase().includes('activation')) {
+          if (formContainer) formContainer.classList.add('hidden');
+          if (activationContainer) {
+            activationContainer.classList.remove('hidden');
+            if (activationGmailLink) {
+              activationGmailLink.href = getGmailComposeUrl(name, email, message);
+            }
+          }
+        } else if (response.ok && (data.success === 'true' || data.success === true)) {
+          // 2. Direct success: Email arrived in inbox
           if (formContainer && successContainer) {
             formContainer.classList.add('hidden');
             successContainer.classList.remove('hidden');
           }
         } else {
-          // Fallback to mailto if submission blocked
-          const mailtoFallback = 'mailto:1himanshujangid@gmail.com?subject=' + encodeURIComponent('Portfolio Inquiry from ' + name) + '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
-          window.location.href = mailtoFallback;
+          // 3. Fallback: Open Gmail Web / mailto
+          const gmailUrl = getGmailComposeUrl(name, email, message);
+          window.open(gmailUrl, '_blank', 'noopener,noreferrer');
           if (formContainer && successContainer) {
             formContainer.classList.add('hidden');
             successContainer.classList.remove('hidden');
           }
         }
       } catch (err) {
-        // Fallback to direct client mailto on network error
-        const mailtoFallback = 'mailto:1himanshujangid@gmail.com?subject=' + encodeURIComponent('Portfolio Inquiry from ' + name) + '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
-        window.location.href = mailtoFallback;
+        // Fallback on network/CSP error to Gmail Web
+        const gmailUrl = getGmailComposeUrl(name, email, message);
+        window.open(gmailUrl, '_blank', 'noopener,noreferrer');
         if (formContainer && successContainer) {
           formContainer.classList.add('hidden');
           successContainer.classList.remove('hidden');
         }
       } finally {
         if (submitBtn) submitBtn.disabled = false;
-        if (btnText) btnText.textContent = 'Transmit Message';
+        if (btnText) btnText.textContent = 'Transmit Directly';
         if (btnIcon) btnIcon.classList.remove('hidden');
         if (btnSpinner) btnSpinner.classList.add('hidden');
       }

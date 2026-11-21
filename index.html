@@ -24,7 +24,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=43.0" />
+  <link rel="stylesheet" href="styles.css?v=44.0" />
 </head>
 <body class="selection:bg-blue-500 selection:text-white">
   <!-- =========================================================================
@@ -538,9 +538,9 @@
       <!-- Minimalist 2D Architectural City Skyline Layer (Clean Vector Landmarks, Zero Cars) -->
       <div class="city-skyline-layer">
         <!-- Desktop & Tablet Skyline (>= 640px) -->
-        <img src="city-skyline-2d.svg?v=43.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img hidden sm:block" />
+        <img src="city-skyline-2d.svg?v=44.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img hidden sm:block" />
         <!-- Mobile Skyline (< 640px) -->
-        <img src="city-skyline-mobile.svg?v=43.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img block sm:hidden" />
+        <img src="city-skyline-mobile.svg?v=44.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img block sm:hidden" />
       </div>
 
       <!-- Earth Container -->
@@ -687,7 +687,7 @@
 
   </div>
 
-  <script src="script.js?v=43.0"></script>
+  <script src="script.js?v=44.0"></script>
   <script>
     lucide.createIcons();
   </script>
@@ -751,12 +751,18 @@
           <!-- Error Alert (Hidden by default) -->
           <div id="contact-error-msg" class="hidden p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs"></div>
 
-          <!-- Submit Button -->
-          <div class="pt-2">
+          <!-- Submit Button & Alternate Quick Actions -->
+          <div class="pt-2 space-y-2">
             <button type="submit" id="submit-contact-btn" class="w-full py-3.5 px-6 rounded-2xl bg-black text-white text-sm font-semibold hover:bg-slate-800 transition-all shadow-lg flex items-center justify-center gap-2 border border-white/20 liquid-glass-btn cursor-pointer">
-              <span id="btn-text">Transmit Message</span>
+              <span id="btn-text">Transmit Directly</span>
               <svg id="btn-icon" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
               <div id="btn-spinner" class="hidden w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+            </button>
+
+            <!-- Direct Gmail Web Option -->
+            <button type="button" id="open-gmail-web-btn" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors flex items-center justify-center gap-2 border border-slate-200 cursor-pointer">
+              <svg class="w-3.5 h-3.5 text-red-600 fill-current" viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+              <span>Or compose in Gmail (Web) ↗</span>
             </button>
           </div>
 
@@ -774,12 +780,37 @@
         <div class="space-y-1">
           <h4 class="text-2xl font-bold text-slate-900">Transmission Delivered!</h4>
           <p class="text-sm text-slate-600 max-w-sm mx-auto leading-relaxed">
-            Thank you for reaching out! Your message was sent directly to Himanshu's personal inbox. I'll get back to you shortly.
+            Thank you for reaching out! Your message was transmitted directly to <strong class="text-slate-900 font-mono">1himanshujangid@gmail.com</strong>. I'll get back to you shortly.
           </p>
         </div>
-        <div class="pt-3">
-          <button type="button" id="done-contact-btn" class="px-6 py-2.5 rounded-full bg-black text-white text-xs font-semibold hover:bg-slate-800 transition-colors shadow">
+        <div class="pt-3 flex flex-wrap items-center justify-center gap-2">
+          <button type="button" id="done-contact-btn" class="px-6 py-2.5 rounded-full bg-black text-white text-xs font-semibold hover:bg-slate-800 transition-colors shadow cursor-pointer">
             Done &bull; Return to Portfolio
+          </button>
+        </div>
+      </div>
+
+      <!-- Activation Notice Container (Shown if FormSubmit needs initial one-time activation) -->
+      <div id="contact-activation-container" class="hidden py-6 px-2 text-center space-y-4">
+        <div class="w-16 h-16 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mx-auto shadow-inner">
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </div>
+        <div class="space-y-1.5">
+          <h4 class="text-xl font-bold text-slate-900">One-Time Form Activation Required</h4>
+          <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+            FormSubmit has sent an activation email to <strong class="text-slate-900 font-mono">1himanshujangid@gmail.com</strong>. Please check your inbox (or Spam/Promotions folder) and click <strong class="text-amber-700">"Activate Form"</strong> once.
+          </p>
+          <p class="text-xs text-slate-500 max-w-sm mx-auto">
+            Once clicked, all submissions will automatically arrive in your inbox with 0 delay!
+          </p>
+        </div>
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2">
+          <a id="activation-gmail-link" href="#" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-white text-xs font-semibold transition-colors shadow flex items-center justify-center gap-1.5">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+            <span>Send Now via Gmail Web ↗</span>
+          </a>
+          <button type="button" id="activation-done-btn" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-slate-200 text-slate-800 text-xs font-medium hover:bg-slate-300 transition-colors">
+            Close
           </button>
         </div>
       </div>
