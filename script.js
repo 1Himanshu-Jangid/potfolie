@@ -381,4 +381,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+
+  // =========================================================================
+  // LIVE GITHUB CONTRIBUTIONS ENGINE
+  // Silently fetches fresh commits & updates total counter in background
+  // =========================================================================
+  function syncLiveGithub() {
+    fetch('https://github-contributions-api.jogruber.de/v4/1Himanshu-Jangid?y=last')
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.total && typeof data.total.lastYear === 'number') {
+          const totalEl = document.getElementById('github-total-contrib');
+          if (totalEl) {
+            totalEl.textContent = data.total.lastYear;
+          }
+        }
+      })
+      .catch(() => {
+        // Fallback gracefully to pre-rendered 88 commits
+      });
+  }
+  syncLiveGithub();
+
 });

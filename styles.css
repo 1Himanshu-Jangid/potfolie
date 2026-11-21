@@ -1041,3 +1041,28 @@ section {
 #top-loader-bar {
   will-change: width;
 }
+
+/* ==========================================================================
+   APPLE LIQUID GLASS GIT CONSOLE (SECTION 3)
+   ========================================================================== */
+.git-console-card {
+  box-shadow: 0 12px 32px -4px rgba(2, 132, 199, 0.15), 0 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+.git-heatmap-svg rect {
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.12s ease, filter 0.12s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.git-heatmap-svg rect:hover {
+  transform: scale(1.35);
+  stroke: #38bdf8 !important;
+  stroke-width: 1.2px;
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.8));
+  cursor: pointer;
+}
+
+.git-cell-glow {
+  filter: drop-shadow(0 0 2.5px rgba(6, 182, 212, 0.45));
+}
