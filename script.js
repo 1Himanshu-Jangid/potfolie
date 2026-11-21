@@ -438,4 +438,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
+  // =========================================================================
+  // COPY EMAIL WITH APPLE LIQUID GLASS TOAST
+  // =========================================================================
+  const copyBtn = document.getElementById('copy-email-btn');
+  const copyToast = document.getElementById('copy-toast');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const email = copyBtn.getAttribute('data-email') || '1himanshujangid@gmail.com';
+      navigator.clipboard.writeText(email).then(() => {
+        const copyIcon = document.getElementById('copy-icon');
+        const checkIcon = document.getElementById('check-icon');
+        if (copyIcon && checkIcon) {
+          copyIcon.classList.add('hidden');
+          checkIcon.classList.remove('hidden');
+        }
+        if (copyToast) {
+          copyToast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+          copyToast.classList.add('opacity-100', 'translate-y-0');
+        }
+        setTimeout(() => {
+          if (copyIcon && checkIcon) {
+            copyIcon.classList.remove('hidden');
+            checkIcon.classList.add('hidden');
+          }
+          if (copyToast) {
+            copyToast.classList.remove('opacity-100', 'translate-y-0');
+            copyToast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+          }
+        }, 2200);
+      }).catch(() => {
+        // Fallback mailto
+        window.location.href = 'mailto:' + email;
+      });
+    });
+  }
+
 });

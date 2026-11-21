@@ -24,7 +24,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=41.0" />
+  <link rel="stylesheet" href="styles.css?v=42.0" />
 </head>
 <body class="selection:bg-blue-500 selection:text-white">
   <!-- =========================================================================
@@ -538,9 +538,9 @@
       <!-- Minimalist 2D Architectural City Skyline Layer (Clean Vector Landmarks, Zero Cars) -->
       <div class="city-skyline-layer">
         <!-- Desktop & Tablet Skyline (>= 640px) -->
-        <img src="city-skyline-2d.svg?v=41.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img hidden sm:block" />
+        <img src="city-skyline-2d.svg?v=42.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img hidden sm:block" />
         <!-- Mobile Skyline (< 640px) -->
-        <img src="city-skyline-mobile.svg?v=41.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img block sm:hidden" />
+        <img src="city-skyline-mobile.svg?v=42.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img block sm:hidden" />
       </div>
 
       <!-- Earth Container -->
@@ -564,22 +564,108 @@
             Looking forward to engineering real-world AI applications as a <strong class="text-black font-bold">Software Engineer</strong>. Clean design, disciplined engineering, and continuous innovation.
           </p>
 
-          <!-- Minimalist Connect Buttons with Liquid Glass Specular Effects -->
-          <div class="pt-4 flex flex-wrap items-center gap-2.5 sm:gap-3">
-            <a href="mailto:himanshujangid@example.com" class="px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-black text-white text-xs font-semibold hover:bg-slate-800 transition-all flex items-center gap-2 shadow-lg liquid-glass-btn border border-white/25">
-              <i data-lucide="mail" class="w-3.5 h-3.5"></i>
-              <span>Get in Touch</span>
-            </a>
+          <!-- Apple Liquid Glass Connect Hub (Idea 1) -->
+          <div class="pt-6 border-t border-slate-200/80 space-y-5">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <span class="text-[11px] font-mono uppercase tracking-widest text-slate-500 font-bold block">Direct Channels</span>
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Let's Connect & Collaborate</h3>
+              </div>
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 text-xs font-mono font-medium self-start sm:self-auto">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                <span>Open for Opportunities</span>
+              </div>
+            </div>
 
-            <a href="https://github.com/1Himanshu-Jangid" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 sm:px-6 sm:py-3 rounded-full liquid-glass-pill-light text-black text-xs font-semibold hover:bg-white transition-all flex items-center gap-2 shadow-md liquid-glass-btn border border-slate-300">
-              <i data-lucide="github" class="w-3.5 h-3.5"></i>
-              <span>GitHub Profile</span>
-            </a>
+            <!-- Responsive 3-Card Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+              
+              <!-- 1. Email Card -->
+              <div class="liquid-glass-connect-card p-4 rounded-2xl bg-white/70 backdrop-blur-xl border border-white/60 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between">
+                    <div class="w-8 h-8 rounded-xl bg-slate-900 text-white flex items-center justify-center shadow-sm">
+                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    </div>
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-slate-700 bg-slate-200/70 px-2 py-0.5 rounded-full font-semibold">Email</span>
+                  </div>
+                  <div>
+                    <div class="text-xs font-medium text-slate-500">Direct Inquiries</div>
+                    <div class="text-xs sm:text-sm font-semibold text-slate-900 truncate" title="1himanshujangid@gmail.com">1himanshujangid@gmail.com</div>
+                  </div>
+                </div>
+                
+                <div class="pt-3 mt-2 border-t border-slate-100 flex items-center gap-2">
+                  <a href="mailto:1himanshujangid@gmail.com" class="flex-1 py-1.5 px-3 rounded-lg bg-black text-white text-xs font-medium hover:bg-slate-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+                    <span>Send Mail</span>
+                    <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                  </a>
+                  <button id="copy-email-btn" data-email="1himanshujangid@gmail.com" class="p-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-black transition-colors flex items-center justify-center" title="Copy Email">
+                    <svg id="copy-icon" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                    <svg id="check-icon" class="w-4 h-4 hidden text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+                  </button>
+                </div>
+              </div>
 
-            <span class="px-4 py-2.5 sm:px-5 sm:py-3 rounded-full liquid-glass-pill-light text-slate-700 text-xs font-mono flex items-center gap-2 shadow-sm border border-slate-200">
-              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-black"></i>
-              <span>SKIT College, Jaipur</span>
-            </span>
+              <!-- 2. LinkedIn Card -->
+              <div class="liquid-glass-connect-card p-4 rounded-2xl bg-white/70 backdrop-blur-xl border border-white/60 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between">
+                    <div class="w-8 h-8 rounded-xl bg-[#0077b5] text-white flex items-center justify-center shadow-sm">
+                      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </div>
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-blue-700 bg-blue-100/70 px-2 py-0.5 rounded-full font-semibold">LinkedIn</span>
+                  </div>
+                  <div>
+                    <div class="text-xs font-medium text-slate-500">Professional Network</div>
+                    <div class="text-xs sm:text-sm font-semibold text-slate-900 truncate">Himanshu Jangid</div>
+                  </div>
+                </div>
+                
+                <div class="pt-3 mt-2 border-t border-slate-100">
+                  <a href="https://www.linkedin.com/in/1himanshu-jangid/" target="_blank" rel="noopener noreferrer" class="w-full py-1.5 px-3 rounded-lg bg-[#0077b5] text-white text-xs font-medium hover:bg-[#006097] transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+                    <span>Connect on LinkedIn</span>
+                    <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                </div>
+              </div>
+
+              <!-- 3. Instagram Card -->
+              <div class="liquid-glass-connect-card p-4 rounded-2xl bg-white/70 backdrop-blur-xl border border-white/60 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between">
+                    <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center shadow-sm">
+                      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </div>
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-pink-700 bg-pink-100/70 px-2 py-0.5 rounded-full font-semibold">Instagram</span>
+                  </div>
+                  <div>
+                    <div class="text-xs font-medium text-slate-500">Social & Creative</div>
+                    <div class="text-xs sm:text-sm font-semibold text-slate-900 truncate">@1himanshu_jangid</div>
+                  </div>
+                </div>
+                
+                <div class="pt-3 mt-2 border-t border-slate-100">
+                  <a href="https://www.instagram.com/1himanshu_jangid/" target="_blank" rel="noopener noreferrer" class="w-full py-1.5 px-3 rounded-lg bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] text-white text-xs font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-1.5 shadow-sm">
+                    <span>Follow on Instagram</span>
+                    <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- GitHub & Location Quick Badges -->
+            <div class="pt-2 flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs">
+              <a href="https://github.com/1Himanshu-Jangid" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full liquid-glass-pill-light text-slate-800 font-semibold hover:bg-white transition-all flex items-center gap-2 shadow-sm border border-slate-300">
+                <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                <span>GitHub Profile (1Himanshu-Jangid)</span>
+              </a>
+              <span class="px-4 py-2 rounded-full liquid-glass-pill-light text-slate-600 font-mono flex items-center gap-2 border border-slate-200">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-800"></i>
+                <span>SKIT College, Jaipur, Rajasthan</span>
+              </span>
+            </div>
           </div>
 
           <div class="pt-2 flex items-center gap-3 text-xs font-mono text-slate-500">
@@ -601,9 +687,14 @@
 
   </div>
 
-  <script src="script.js?v=41.0"></script>
+  <script src="script.js?v=42.0"></script>
   <script>
     lucide.createIcons();
   </script>
+  <!-- Apple Liquid Glass Copy Toast -->
+  <div id="copy-toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[9999] pointer-events-none opacity-0 translate-y-4 transition-all duration-300 px-4 py-2 rounded-full bg-slate-900/95 backdrop-blur-xl text-white border border-white/20 shadow-2xl flex items-center gap-2 text-xs font-mono shadow-slate-950/60">
+    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+    <span>Email copied to clipboard: 1himanshujangid@gmail.com</span>
+  </div>
 </body>
 </html>
