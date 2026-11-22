@@ -175,7 +175,7 @@ body {
    2. CLOUDS & AIRPLANES (SILKY SMOOTH GPU CRUISE)
    ========================================================================== */
 .cloud-drift-1 {
-  animation: cloudDriftSmooth_1 160s linear infinite;
+  animation: cloudDriftSmooth_1 260s linear infinite;
   will-change: transform;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -187,8 +187,8 @@ body {
 }
 
 .cloud-drift-2 {
-  animation: cloudDriftSmooth_2 200s linear infinite;
-  animation-delay: -95s;
+  animation: cloudDriftSmooth_2 320s linear infinite;
+  animation-delay: -150s;
   will-change: transform;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -200,7 +200,7 @@ body {
 }
 
 .fore-cloud-drift-1 {
-  animation: foreCloudDriftSmooth_1 135s linear infinite;
+  animation: foreCloudDriftSmooth_1 210s linear infinite;
   will-change: transform;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -212,8 +212,8 @@ body {
 }
 
 .fore-cloud-drift-2 {
-  animation: foreCloudDriftSmooth_2 160s linear infinite;
-  animation-delay: -75s;
+  animation: foreCloudDriftSmooth_2 250s linear infinite;
+  animation-delay: -110s;
   will-change: transform;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -225,8 +225,8 @@ body {
 }
 
 .fore-cloud-drift-3 {
-  animation: foreCloudDriftSmooth_3 145s linear infinite;
-  animation-delay: -45s;
+  animation: foreCloudDriftSmooth_3 230s linear infinite;
+  animation-delay: -70s;
   will-change: transform;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -237,7 +237,7 @@ body {
   100% { transform: translate3d(calc(100vw + 320px), 0, 0); }
 }
 
-/* AIRPLANES: Smooth Straight Cruise Vector */
+/* AIRPLANES: Smooth Straight Cruise Vector (Brisk 20s-24s Speed, Noticeably Faster Than Clouds) */
 .plane-flight {
   pointer-events: none;
   position: absolute;
@@ -249,7 +249,7 @@ body {
 
 .plane-stream-1 {
   top: 14%;
-  animation: flyPlaneSmooth_1 44s linear infinite;
+  animation: flyPlaneSmooth_1 20s linear infinite;
 }
 
 @keyframes flyPlaneSmooth_1 {
@@ -259,8 +259,8 @@ body {
 
 .plane-stream-2 {
   top: 84%;
-  animation: flyPlaneSmooth_2 50s linear infinite;
-  animation-delay: -25s;
+  animation: flyPlaneSmooth_2 24s linear infinite;
+  animation-delay: -12s;
 }
 
 @keyframes flyPlaneSmooth_2 {
