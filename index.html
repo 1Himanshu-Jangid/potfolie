@@ -24,7 +24,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=44.0" />
+  <link rel="stylesheet" href="styles.css?v=45.0" />
 </head>
 <body class="selection:bg-blue-500 selection:text-white">
   <!-- =========================================================================
@@ -538,9 +538,9 @@
       <!-- Minimalist 2D Architectural City Skyline Layer (Clean Vector Landmarks, Zero Cars) -->
       <div class="city-skyline-layer">
         <!-- Desktop & Tablet Skyline (>= 640px) -->
-        <img src="city-skyline-2d.svg?v=44.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img hidden sm:block" />
+        <img src="city-skyline-2d.svg?v=45.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img hidden sm:block" />
         <!-- Mobile Skyline (< 640px) -->
-        <img src="city-skyline-mobile.svg?v=44.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img block sm:hidden" />
+        <img src="city-skyline-mobile.svg?v=45.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img block sm:hidden" />
       </div>
 
       <!-- Earth Container -->
@@ -580,14 +580,21 @@
             <!-- Responsive 3-Card Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
               
-              <!-- 1. Email Card -->
-              <div class="liquid-glass-connect-card p-4 rounded-2xl bg-white/70 backdrop-blur-xl border border-white/60 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
+              <!-- 1. Email / Gmail Card (Official App Icon) -->
+              <div class="liquid-glass-connect-card p-4 rounded-2xl bg-white/75 backdrop-blur-xl border border-white/60 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
                 <div class="space-y-2">
                   <div class="flex items-center justify-between">
-                    <div class="w-8 h-8 rounded-xl bg-slate-900 text-white flex items-center justify-center shadow-sm">
-                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <!-- Real Official Gmail App Icon -->
+                    <div class="w-9 h-9 rounded-xl bg-white border border-slate-200/70 shadow-sm flex items-center justify-center p-1.5 transition-transform group-hover:scale-105">
+                      <svg viewBox="0 0 512 512" class="w-full h-full block" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M34.9 448h81.5V250.2L0 163v250.2C0 432.5 15.7 448 34.9 448" fill="#4285f4"/>
+                        <path d="M395.6 448h81.5c19.3 0 34.9-15.7 34.9-34.9V163l-116.4 87.3" fill="#34a853"/>
+                        <path d="M395.6 99v151.3L512 163v-46.5c0-43.2-49.3-67.8-83.8-41.9" fill="#fbbc04"/>
+                        <path d="M116.4 250.2V99L256 203.7 395.6 99v151.3L256 355" fill="#ea4335"/>
+                        <path d="M0 116.4V163l116.4 87.3V99L83.8 74.5C49.2 48.6 0 73.2 0 116.4" fill="#c5221f"/>
+                      </svg>
                     </div>
-                    <span class="text-[10px] font-mono uppercase tracking-wider text-slate-700 bg-slate-200/70 px-2 py-0.5 rounded-full font-semibold">Email</span>
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-red-600 bg-red-50 border border-red-200/60 px-2 py-0.5 rounded-full font-semibold">Gmail</span>
                   </div>
                   <div>
                     <div class="text-xs font-medium text-slate-500">Direct Inquiries</div>
@@ -607,14 +614,17 @@
                 </div>
               </div>
 
-              <!-- 2. LinkedIn Card -->
-              <div class="liquid-glass-connect-card p-4 rounded-2xl bg-white/70 backdrop-blur-xl border border-white/60 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
+              <!-- 2. LinkedIn Card (Official App Icon) -->
+              <div class="liquid-glass-connect-card p-4 rounded-2xl bg-white/75 backdrop-blur-xl border border-white/60 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
                 <div class="space-y-2">
                   <div class="flex items-center justify-between">
-                    <div class="w-8 h-8 rounded-xl bg-[#0077b5] text-white flex items-center justify-center shadow-sm">
-                      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    <!-- Real Official LinkedIn App Icon -->
+                    <div class="w-9 h-9 rounded-xl bg-[#0A66C2] text-white flex items-center justify-center shadow-sm p-1.5 transition-transform group-hover:scale-105">
+                      <svg class="w-full h-full fill-current block" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/>
+                      </svg>
                     </div>
-                    <span class="text-[10px] font-mono uppercase tracking-wider text-blue-700 bg-blue-100/70 px-2 py-0.5 rounded-full font-semibold">LinkedIn</span>
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-[#0A66C2] bg-blue-50 border border-blue-200/60 px-2 py-0.5 rounded-full font-semibold">LinkedIn</span>
                   </div>
                   <div>
                     <div class="text-xs font-medium text-slate-500">Professional Network</div>
@@ -623,21 +633,39 @@
                 </div>
                 
                 <div class="pt-3 mt-2 border-t border-slate-100">
-                  <a href="https://www.linkedin.com/in/1himanshu-jangid/" target="_blank" rel="noopener noreferrer" class="w-full py-1.5 px-3 rounded-lg bg-[#0077b5] text-white text-xs font-medium hover:bg-[#006097] transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+                  <a href="https://www.linkedin.com/in/1himanshu-jangid/" target="_blank" rel="noopener noreferrer" class="w-full py-1.5 px-3 rounded-lg bg-[#0A66C2] text-white text-xs font-medium hover:bg-[#084e96] transition-colors flex items-center justify-center gap-1.5 shadow-sm">
                     <span>Connect on LinkedIn</span>
                     <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                   </a>
                 </div>
               </div>
 
-              <!-- 3. Instagram Card -->
-              <div class="liquid-glass-connect-card p-4 rounded-2xl bg-white/70 backdrop-blur-xl border border-white/60 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
+              <!-- 3. Instagram Card (Official App Icon) -->
+              <div class="liquid-glass-connect-card p-4 rounded-2xl bg-white/75 backdrop-blur-xl border border-white/60 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
                 <div class="space-y-2">
                   <div class="flex items-center justify-between">
-                    <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center shadow-sm">
-                      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    <!-- Real Official Instagram App Icon (Full Gradient Squircle) -->
+                    <div class="w-9 h-9 rounded-xl overflow-hidden shadow-sm flex items-center justify-center p-0.5 transition-transform group-hover:scale-105">
+                      <svg class="w-full h-full block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <defs>
+                          <radialGradient id="insta-real-grad-a" cx="-167.747" cy="-6.147" r="255.952" gradientTransform="matrix(0 -1.982 -1.8439 0 124.667 218.883)" gradientUnits="userSpaceOnUse">
+                            <stop offset="0" stop-color="#fd5"/>
+                            <stop offset=".1" stop-color="#fd5"/>
+                            <stop offset=".5" stop-color="#ff543e"/>
+                            <stop offset="1" stop-color="#c837ab"/>
+                          </radialGradient>
+                          <radialGradient id="insta-real-grad-b" cx="278.405" cy="166.356" r="255.952" gradientTransform="matrix(.1739 .8687 3.5818 -.7172 -730.042 -85.605)" gradientUnits="userSpaceOnUse">
+                            <stop offset="0" stop-color="#3771c8"/>
+                            <stop offset=".128" stop-color="#3771c8"/>
+                            <stop offset="1" stop-color="#60f" stop-opacity="0"/>
+                          </radialGradient>
+                        </defs>
+                        <path d="M256.1.1C149.2.1 118 .2 111.9.7 89.9 2.5 76.3 6 61.4 13.4 50 19.1 40.9 25.6 32 34.9 15.8 51.8 5.9 72.5 2.4 97.2.7 109.2.2 111.6.1 172.8V256c0 106.8.1 138 .6 144.1 1.8 21.3 5.1 34.8 12.2 49.5 13.5 28.1 39.4 49.2 69.9 57.1 10.6 2.7 22.2 4.2 37.2 4.9 6.3.3 71 .5 135.6.5s129.3-.1 135.5-.4c17.3-.8 27.4-2.2 38.5-5 30.7-7.9 56.1-28.7 69.9-57.2 7-14.3 10.5-28.3 12.1-48.5.3-4.4.5-74.7.5-144.9s-.2-140.4-.5-144.8c-1.6-20.6-5.1-34.4-12.3-49-5.9-12-12.4-20.9-21.9-30-16.9-16.2-37.6-26-62.3-29.6C403.1 1 400.8.5 339.6.4h-83.5z" fill="url(#insta-real-grad-a)"/>
+                        <path d="M256.1.1C149.2.1 118 .2 111.9.7 89.9 2.5 76.3 6 61.4 13.4 50 19.1 40.9 25.6 32 34.9 15.8 51.8 5.9 72.5 2.4 97.2.7 109.2.2 111.6.1 172.8V256c0 106.8.1 138 .6 144.1 1.8 21.3 5.1 34.8 12.2 49.5 13.5 28.1 39.4 49.2 69.9 57.1 10.6 2.7 22.2 4.2 37.2 4.9 6.3.3 71 .5 135.6.5s129.3-.1 135.5-.4c17.3-.8 27.4-2.2 38.5-5 30.7-7.9 56.1-28.7 69.9-57.2 7-14.3 10.5-28.3 12.1-48.5.3-4.4.5-74.7.5-144.9s-.2-140.4-.5-144.8c-1.6-20.6-5.1-34.4-12.3-49-5.9-12-12.4-20.9-21.9-30-16.9-16.2-37.6-26-62.3-29.6C403.1 1 400.8.5 339.6.4h-83.5z" fill="url(#insta-real-grad-b)"/>
+                        <path d="M256 67c-51.3 0-57.8.2-77.9 1.1s-33.9 4.1-45.9 8.8c-12.4 4.8-23 11.3-33.5 21.8s-17 21.1-21.8 33.5c-4.7 12-7.9 25.8-8.8 45.9-.9 20.2-1.1 26.6-1.1 77.9s.2 57.8 1.1 77.9 4.1 33.9 8.8 45.9c4.8 12.4 11.3 23 21.8 33.5s21 17 33.5 21.8c12 4.7 25.8 7.9 45.9 8.8 20.2.9 26.6 1.1 77.9 1.1s57.8-.2 77.9-1.1 33.9-4.1 45.9-8.8c12.4-4.8 23-11.3 33.5-21.8s17-21.1 21.8-33.5c4.6-12 7.8-25.8 8.8-45.9.9-20.2 1.1-26.6 1.1-77.9s-.2-57.8-1.1-77.9-4.1-33.9-8.8-45.9c-4.8-12.4-11.3-23-21.8-33.5s-21-17-33.5-21.8c-12-4.7-25.8-7.9-45.9-8.8-20.2-.9-26.6-1.1-77.9-1.1m-17 34.1h17c50.5 0 56.4.2 76.4 1.1 18.4.8 28.4 3.9 35.1 6.5 8.8 3.4 15.1 7.5 21.7 14.1s10.7 12.9 14.1 21.7c2.6 6.7 5.7 16.7 6.5 35.1.9 19.9 1.1 25.9 1.1 76.4s-.2 56.4-1.1 76.4c-.8 18.4-3.9 28.4-6.5 35.1-3.4 8.8-7.5 15.1-14.1 21.7s-12.9 10.7-21.7 14.1c-6.7 2.6-16.7 5.7-35.1 6.5-19.9.9-25.9 1.1-76.4 1.1s-56.5-.2-76.4-1.1c-18.4-.9-28.4-3.9-35.1-6.5-8.8-3.4-15.1-7.5-21.7-14.1s-10.7-12.9-14.1-21.7c-2.6-6.7-5.7-16.7-6.5-35.1-.9-19.9-1.1-25.9-1.1-76.4s.2-56.4 1.1-76.4c.8-18.4 3.9-28.4 6.5-35.1 3.4-8.8 7.5-15.1 14.1-21.7s12.9-10.7 21.7-14.1c6.7-2.6 16.7-5.7 35.1-6.5 17.4-.9 24.2-1.1 59.4-1.1m117.9 31.4c-12.5 0-22.7 10.1-22.7 22.7 0 12.5 10.2 22.7 22.7 22.7s22.7-10.2 22.7-22.7-10.2-22.8-22.7-22.7M256 159c-53.6 0-97.1 43.5-97.1 97.1s43.5 97 97.1 97 97-43.4 97-97-43.4-97.1-97-97.1m0 34c34.8 0 63 28.2 63 63s-28.2 63-63 63-63-28.2-63-63 28.2-63 63-63" fill="#fff"/>
+                      </svg>
                     </div>
-                    <span class="text-[10px] font-mono uppercase tracking-wider text-pink-700 bg-pink-100/70 px-2 py-0.5 rounded-full font-semibold">Instagram</span>
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-pink-600 bg-pink-50 border border-pink-200/60 px-2 py-0.5 rounded-full font-semibold">Instagram</span>
                   </div>
                   <div>
                     <div class="text-xs font-medium text-slate-500">Social & Creative</div>
@@ -687,7 +715,7 @@
 
   </div>
 
-  <script src="script.js?v=44.0"></script>
+  <script src="script.js?v=45.0"></script>
   <script>
     lucide.createIcons();
   </script>
@@ -761,7 +789,13 @@
 
             <!-- Direct Gmail Web Option -->
             <button type="button" id="open-gmail-web-btn" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors flex items-center justify-center gap-2 border border-slate-200 cursor-pointer">
-              <svg class="w-3.5 h-3.5 text-red-600 fill-current" viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+              <svg viewBox="0 0 512 512" class="w-4 h-4 block shrink-0" xmlns="http://www.w3.org/2000/svg">
+                <path d="M34.9 448h81.5V250.2L0 163v250.2C0 432.5 15.7 448 34.9 448" fill="#4285f4"/>
+                <path d="M395.6 448h81.5c19.3 0 34.9-15.7 34.9-34.9V163l-116.4 87.3" fill="#34a853"/>
+                <path d="M395.6 99v151.3L512 163v-46.5c0-43.2-49.3-67.8-83.8-41.9" fill="#fbbc04"/>
+                <path d="M116.4 250.2V99L256 203.7 395.6 99v151.3L256 355" fill="#ea4335"/>
+                <path d="M0 116.4V163l116.4 87.3V99L83.8 74.5C49.2 48.6 0 73.2 0 116.4" fill="#c5221f"/>
+              </svg>
               <span>Or compose in Gmail (Web) ↗</span>
             </button>
           </div>
@@ -805,8 +839,14 @@
           </p>
         </div>
         <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2">
-          <a id="activation-gmail-link" href="#" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-white text-xs font-semibold transition-colors shadow flex items-center justify-center gap-1.5">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+          <a id="activation-gmail-link" href="#" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-white border border-slate-200 text-slate-800 hover:bg-slate-50 text-xs font-semibold transition-colors shadow flex items-center justify-center gap-2">
+            <svg viewBox="0 0 512 512" class="w-4 h-4 block shrink-0" xmlns="http://www.w3.org/2000/svg">
+              <path d="M34.9 448h81.5V250.2L0 163v250.2C0 432.5 15.7 448 34.9 448" fill="#4285f4"/>
+              <path d="M395.6 448h81.5c19.3 0 34.9-15.7 34.9-34.9V163l-116.4 87.3" fill="#34a853"/>
+              <path d="M395.6 99v151.3L512 163v-46.5c0-43.2-49.3-67.8-83.8-41.9" fill="#fbbc04"/>
+              <path d="M116.4 250.2V99L256 203.7 395.6 99v151.3L256 355" fill="#ea4335"/>
+              <path d="M0 116.4V163l116.4 87.3V99L83.8 74.5C49.2 48.6 0 73.2 0 116.4" fill="#c5221f"/>
+            </svg>
             <span>Send Now via Gmail Web ↗</span>
           </a>
           <button type="button" id="activation-done-btn" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-slate-200 text-slate-800 text-xs font-medium hover:bg-slate-300 transition-colors">
