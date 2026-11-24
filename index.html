@@ -24,7 +24,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=49.0" />
+  <link rel="stylesheet" href="styles.css?v=50.0" />
 </head>
 <body class="selection:bg-blue-500 selection:text-white">
   <!-- =========================================================================
@@ -223,6 +223,9 @@
 
     </section>
 
+    <!-- Cinematic Atmospheric Re-entry Horizon Curvature Arc -->
+    <div class="atmospheric-horizon-glow pointer-events-none"></div>
+
     <!-- =======================================================================
          PAGE 2: STRATOSPHERE (Deep Navy to Royal Blue Transition)
          Highlighting SKIT College & CS AI Degree | Responsive Mobile Height
@@ -330,7 +333,18 @@
         
         <!-- AIRPLANE 1: Commercial Twin-Jet Airliner (Upper Sky Lane - 14% altitude) -->
         <div class="plane-flight plane-stream-1 absolute">
-          <svg width="95" height="40" viewBox="0 0 95 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="plane-clean">
+          <svg width="95" height="40" viewBox="0 0 95 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="plane-clean overflow-visible">
+            <!-- Twin Contrail Vapor Streams -->
+            <defs>
+              <linearGradient id="contrail-grad-1" x1="1" y1="0" x2="0" y2="0">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85" />
+                <stop offset="25%" stop-color="#ffffff" stop-opacity="0.45" />
+                <stop offset="65%" stop-color="#bae6fd" stop-opacity="0.18" />
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+            <polygon points="32,8 -170,5 -170,11 32,9" fill="url(#contrail-grad-1)" />
+            <polygon points="32,32 -170,29 -170,35 32,33" fill="url(#contrail-grad-1)" />
             <!-- Fuselage -->
             <path d="M12 20 C18 17, 70 17, 85 19 C92 20, 95 21, 95 21 C95 21, 92 22, 85 23 C70 25, 18 25, 12 22 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="0.8"/>
             <!-- Main Wings -->
@@ -352,7 +366,17 @@
 
         <!-- AIRPLANE 2: Executive High-Altitude Jet (Lower Sky Lane - 84% altitude) -->
         <div class="plane-flight plane-stream-2 absolute">
-          <svg width="76" height="32" viewBox="0 0 70 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="plane-clean">
+          <svg width="76" height="32" viewBox="0 0 70 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="plane-clean overflow-visible">
+            <defs>
+              <linearGradient id="contrail-grad-2" x1="1" y1="0" x2="0" y2="0">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.75" />
+                <stop offset="30%" stop-color="#ffffff" stop-opacity="0.35" />
+                <stop offset="70%" stop-color="#bae6fd" stop-opacity="0.15" />
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+            <polygon points="22,6 -140,4 -140,8 22,7" fill="url(#contrail-grad-2)" />
+            <polygon points="22,24 -140,22 -140,26 22,25" fill="url(#contrail-grad-2)" />
             <path d="M8 15 C15 13, 50 13, 62 14.5 C68 15, 70 15.5, 70 15.5 C70 15.5, 68 16, 62 16.5 C50 18, 15 18, 8 16 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8"/>
             <!-- Swept Wings -->
             <path d="M30 15 L20 4 L30 4 L45 15 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.8"/>
@@ -538,9 +562,9 @@
       <!-- Minimalist 2D Architectural City Skyline Layer (Clean Vector Landmarks, Zero Cars) -->
       <div class="city-skyline-layer">
         <!-- Desktop & Tablet Skyline (>= 640px) -->
-        <img src="city-skyline-2d.svg?v=49.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img hidden sm:block" />
+        <img src="city-skyline-2d.svg?v=50.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img hidden sm:block" />
         <!-- Mobile Skyline (< 640px) -->
-        <img src="city-skyline-mobile.svg?v=49.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img block sm:hidden" />
+        <img src="city-skyline-mobile.svg?v=50.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img block sm:hidden" />
       </div>
 
       <!-- Earth Container -->
@@ -715,7 +739,7 @@
 
   </div>
 
-  <script src="script.js?v=49.0"></script>
+  <script src="script.js?v=50.0"></script>
   <script>
     lucide.createIcons();
   </script>

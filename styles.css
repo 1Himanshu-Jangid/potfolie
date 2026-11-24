@@ -1096,3 +1096,26 @@ section {
 #contact-modal.modal-active #contact-modal-card {
   transform: scale(1) !important;
 }
+
+
+/* ==========================================================================
+   CINEMATIC ATMOSPHERIC RE-ENTRY HORIZON GLOW
+   Ethereal cyan/azure arc where deep space meets stratosphere
+   ========================================================================== */
+.atmospheric-horizon-glow {
+  position: absolute;
+  top: 135vh;
+  left: 0;
+  width: 100%;
+  height: 160px;
+  transform: translateY(-50%);
+  background: radial-gradient(
+    ellipse 85% 100% at 50% 50%,
+    rgba(56, 189, 248, 0.30) 0%,
+    rgba(37, 99, 235, 0.14) 45%,
+    transparent 80%
+  );
+  filter: blur(36px);
+  z-index: 2;
+  pointer-events: none;
+}

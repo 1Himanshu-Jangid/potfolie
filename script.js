@@ -180,6 +180,25 @@ document.addEventListener('DOMContentLoaded', () => {
     let simTime = 0;
     let isVisible = true;
 
+    
+    // Interactive Constellation Gravity on Cursor
+    let mouseStarX = -1000;
+    let mouseStarY = -1000;
+    let isMouseOnCanvas = false;
+
+    if (!isMobile) {
+      window.addEventListener('mousemove', (e) => {
+        const scrollY = window.scrollY || window.pageYOffset || 0;
+        mouseStarX = e.clientX;
+        mouseStarY = e.clientY + scrollY;
+        isMouseOnCanvas = (mouseStarY >= 0 && mouseStarY <= height);
+      }, { passive: true });
+
+      document.addEventListener('mouseleave', () => {
+        isMouseOnCanvas = false;
+      });
+    }
+
     function renderStarfield(now) {
       if (!now) now = performance.now();
 
@@ -204,6 +223,56 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < stars.length; i++) {
           stars[i].update(simTime);
           stars[i].draw();
+        }
+
+        // Interactive Celestial Constellations near Cursor (Subtle & Natural Stargazing)
+        if (isMouseOnCanvas && mouseStarY < height * 0.9) {
+          const maxDist = 120;
+          const nearby = [];
+          for (let i = 0; i < stars.length; i++) {
+            const star = stars[i];
+            if (star.altitudeFade > 0.05) {
+              const dx = star.x - mouseStarX;
+              const dy = star.y - mouseStarY;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < maxDist) {
+                nearby.push({ star: star, dist: dist });
+              }
+            }
+          }
+
+          // Connect stars to cursor
+          for (let i = 0; i < nearby.length; i++) {
+            const s1 = nearby[i].star;
+            const alphaToCursor = (1 - (nearby[i].dist / maxDist)) * 0.35 * s1.altitudeFade;
+            if (alphaToCursor > 0.02) {
+              ctx.beginPath();
+              ctx.moveTo(mouseStarX, mouseStarY);
+              ctx.lineTo(s1.x, s1.y);
+              ctx.strokeStyle = 'rgba(186, 230, 253, ' + alphaToCursor.toFixed(3) + ')';
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+            }
+
+            // Connect nearby stars to each other (Celestial Constellation Network)
+            for (let j = i + 1; j < nearby.length; j++) {
+              const s2 = nearby[j].star;
+              const dStarX = s1.x - s2.x;
+              const dStarY = s1.y - s2.y;
+              const starDist = Math.sqrt(dStarX * dStarX + dStarY * dStarY);
+              if (starDist < 95) {
+                const lineAlpha = (1 - (starDist / 95)) * 0.25 * Math.min(s1.altitudeFade, s2.altitudeFade);
+                if (lineAlpha > 0.02) {
+                  ctx.beginPath();
+                  ctx.moveTo(s1.x, s1.y);
+                  ctx.lineTo(s2.x, s2.y);
+                  ctx.strokeStyle = 'rgba(147, 197, 253, ' + lineAlpha.toFixed(3) + ')';
+                  ctx.lineWidth = 0.6;
+                  ctx.stroke();
+                }
+              }
+            }
+          }
         }
 
         // Shooting star delta-time scaling
