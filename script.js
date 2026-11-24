@@ -288,6 +288,11 @@ document.addEventListener('DOMContentLoaded', () => {
         header.classList.remove('theme-space', 'theme-skit', 'theme-sky', 'theme-earth');
         header.classList.add(activeTheme);
       }
+      const hudEl = document.getElementById('altitude-hud');
+      if (hudEl) {
+        hudEl.classList.remove('theme-space', 'theme-skit', 'theme-sky', 'theme-earth');
+        hudEl.classList.add(activeTheme);
+      }
     }
 
     if (targetSectionId !== activeSectionId) {
@@ -639,6 +644,193 @@ document.addEventListener('DOMContentLoaded', () => {
         if (btnIcon) btnIcon.classList.remove('hidden');
         if (btnSpinner) btnSpinner.classList.add('hidden');
       }
+    });
+  }
+
+
+  // =========================================================================
+  // LIVE ALTITUDE TELEMETRY ENGINE (HUD FLIGHT INSTRUMENT)
+  // Continuous smooth interpolation of altitude, speed, descent regimes & gauge
+  // =========================================================================
+  const altValEl = document.getElementById('hud-altitude-val');
+  const layerBadgeEl = document.getElementById('hud-layer-badge');
+  const orbitLabelEl = document.getElementById('hud-orbit-label');
+  const speedValEl = document.getElementById('hud-speed-val');
+  const regimeValEl = document.getElementById('hud-regime-val');
+  const gaugeFillEl = document.getElementById('hud-gauge-fill');
+  const gaugeMarkerEl = document.getElementById('hud-gauge-marker');
+  const mobileAltEl = document.getElementById('hud-mobile-altitude');
+  const mobileLayerEl = document.getElementById('hud-mobile-layer');
+
+  function updateAltitudeTelemetry() {
+    const spaceEl = document.getElementById('space');
+    const skitEl = document.getElementById('skit');
+    const skyEl = document.getElementById('sky');
+    const earthEl = document.getElementById('earth');
+
+    const spaceTop = spaceEl ? spaceEl.offsetTop : 0;
+    const skitTop = skitEl ? skitEl.offsetTop : window.innerHeight * 1.35;
+    const skyTop = skyEl ? skyEl.offsetTop : window.innerHeight * 2.7;
+    const earthTop = earthEl ? earthEl.offsetTop : window.innerHeight * 4.05;
+    const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+
+    let altitude = 400000;
+    let speed = '28,000 KM/H';
+    let layer = 'EXOSPHERE';
+    let orbit = 'ORB-01';
+    let regime = 'ORBITAL VELOCITY';
+
+    if (scrollY <= spaceTop) {
+      altitude = 400000;
+      speed = '28,000 KM/H';
+      layer = 'EXOSPHERE';
+      orbit = 'ORB-01';
+      regime = 'ORBITAL VELOCITY';
+    } else if (scrollY < skitTop) {
+      const r = (scrollY - spaceTop) / Math.max(1, skitTop - spaceTop);
+      altitude = Math.round(400000 - r * (400000 - 50000));
+      const s = Math.round(28000 - r * (28000 - 4200));
+      speed = s.toLocaleString() + ' KM/H';
+      layer = r > 0.6 ? 'THERMOSPHERE' : 'EXOSPHERE';
+      orbit = 'ORB-01';
+      regime = 'ATMOSPHERIC RE-ENTRY';
+    } else if (scrollY < skyTop) {
+      const r = (scrollY - skitTop) / Math.max(1, skyTop - skitTop);
+      altitude = Math.round(50000 - r * (50000 - 10000));
+      const s = Math.round(4200 - r * (4200 - 900));
+      speed = s.toLocaleString() + ' KM/H';
+      layer = r > 0.5 ? 'MESOSPHERE' : 'STRATOSPHERE';
+      orbit = 'ORB-02';
+      regime = 'HYPERSONIC FLIGHT';
+    } else if (scrollY < earthTop) {
+      const r = (scrollY - skyTop) / Math.max(1, earthTop - skyTop);
+      altitude = Math.round(10000 - r * 10000);
+      const s = Math.round(900 - r * 900);
+      speed = s.toLocaleString() + ' KM/H';
+      layer = 'TROPOSPHERE';
+      orbit = 'ORB-03';
+      regime = 'AERODYNAMIC CRUISE';
+    } else {
+      const extraRatio = Math.min(1, (scrollY - earthTop) / Math.max(1, maxScroll - earthTop));
+      altitude = Math.round(Math.max(0, 1000 * (1 - extraRatio * 2)));
+      if (extraRatio >= 0.45 || scrollY >= maxScroll - 40) altitude = 0;
+      speed = altitude === 0 ? '0 KM/H' : Math.round(180 * (1 - extraRatio)) + ' KM/H';
+      layer = altitude === 0 ? 'SURFACE' : 'APPROACH';
+      orbit = 'GROUND';
+      regime = altitude === 0 ? 'TOUCHDOWN JAIPUR' : 'FINAL APPROACH';
+    }
+
+    // Gauge track calculations
+    const totalRatio = Math.min(1, Math.max(0, scrollY / maxScroll));
+    if (gaugeFillEl) gaugeFillEl.style.height = (totalRatio * 100).toFixed(1) + '%';
+    if (gaugeMarkerEl) gaugeMarkerEl.style.top = (totalRatio * 90).toFixed(1) + '%';
+
+    const formattedAlt = altitude.toLocaleString();
+    if (altValEl) altValEl.textContent = formattedAlt;
+    if (layerBadgeEl) layerBadgeEl.textContent = layer;
+    if (orbitLabelEl) orbitLabelEl.textContent = orbit;
+    if (speedValEl) speedValEl.textContent = speed;
+    if (regimeValEl) regimeValEl.textContent = regime;
+
+    if (mobileAltEl) mobileAltEl.textContent = formattedAlt + ' M';
+    if (mobileLayerEl) mobileLayerEl.textContent = layer;
+  }
+
+  // Throttle telemetry with requestAnimationFrame
+  let telemetryTicking = false;
+  window.addEventListener('scroll', () => {
+    if (!telemetryTicking) {
+      telemetryTicking = true;
+      requestAnimationFrame(() => {
+        updateAltitudeTelemetry();
+        telemetryTicking = false;
+      });
+    }
+  }, { passive: true });
+  updateAltitudeTelemetry();
+
+
+  // =========================================================================
+  // APPLE visionOS 3D MOUSE TILT & DYNAMIC SPECULAR GLINT
+  // Interactive 3D Perspective Tilt with Specular Sheen Following Cursor
+  // =========================================================================
+  const tiltCards = document.querySelectorAll(
+    '.hero-glass-card, .liquid-glass-card, .liquid-glass-card-light, .liquid-glass-connect-card, .git-console-card'
+  );
+
+  const supportsTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!supportsTouch && !prefersReduced && tiltCards.length > 0) {
+    tiltCards.forEach(card => {
+      // Ensure specular glint overlay exists
+      let glint = card.querySelector('.glass-tilt-glint');
+      if (!glint) {
+        glint = document.createElement('div');
+        glint.className = 'glass-tilt-glint';
+        card.appendChild(glint);
+      }
+
+      let isHovered = false;
+      let rafId = null;
+      let targetRx = 0;
+      let targetRy = 0;
+      let mouseX = 0;
+      let mouseY = 0;
+
+      card.addEventListener('mouseenter', () => {
+        isHovered = true;
+        card.style.transition = 'transform 0.12s ease-out, box-shadow 0.25s ease';
+      });
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        mouseX = x;
+        mouseY = y;
+
+        // Normalized: -1 to +1
+        const normX = (x / rect.width) * 2 - 1;
+        const normY = (y / rect.height) * 2 - 1;
+
+        // Subtle, elegant tilt limits (max 5.5deg for large cards, 7.5deg for small connect cards)
+        const isSmall = rect.width < 380;
+        const maxAngle = isSmall ? 7.5 : 5.5;
+
+        targetRx = -normY * maxAngle;
+        targetRy = normX * maxAngle;
+
+        if (!rafId) {
+          rafId = requestAnimationFrame(() => {
+            if (isHovered) {
+              card.style.transform = 'perspective(1000px) rotateX(' + targetRx.toFixed(2) + 'deg) rotateY(' + targetRy.toFixed(2) + 'deg) scale3d(1.012, 1.012, 1.012)';
+              if (glint) {
+                glint.style.opacity = '1';
+                glint.style.background = 'radial-gradient(circle 320px at ' + mouseX + 'px ' + mouseY + 'px, rgba(255, 255, 255, 0.24), transparent 70%)';
+              }
+            }
+            rafId = null;
+          });
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        isHovered = false;
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+
+        // Graceful spring back to resting state
+        card.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        if (glint) {
+          glint.style.opacity = '0';
+        }
+      });
     });
   }
 

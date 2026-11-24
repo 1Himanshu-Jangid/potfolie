@@ -24,7 +24,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=47.0" />
+  <link rel="stylesheet" href="styles.css?v=48.0" />
 </head>
 <body class="selection:bg-blue-500 selection:text-white">
   <!-- =========================================================================
@@ -78,6 +78,85 @@
       </span>
     </div>
   </header>
+
+  <!-- =========================================================================
+       APPLE LIQUID GLASS LIVE ALTITUDE TELEMETRY HUD (FLIGHT INSTRUMENT)
+       Silicon Valley / SpaceX Flight Telemetry: Real-time Altitude, Speed & Regimes
+       ========================================================================= -->
+  <aside id="altitude-hud" class="theme-space fixed z-40 select-none pointer-events-none transition-all duration-500" aria-label="Altitude Telemetry">
+    
+    <!-- Desktop HUD Panel (>= 768px) -->
+    <div class="hud-desktop-panel hidden md:flex flex-col items-center gap-2.5 p-3 rounded-2xl pointer-events-auto">
+      
+      <!-- Top Status Beacon -->
+      <div class="flex items-center gap-1.5 w-full justify-between pb-1.5 border-b border-current/15">
+        <div class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full hud-beacon"></span>
+          <span class="text-[8px] font-mono font-bold tracking-widest uppercase opacity-85">TELEMETRY</span>
+        </div>
+        <span id="hud-orbit-label" class="text-[8px] font-mono px-1 py-0.5 rounded font-bold hud-tag">ORB-01</span>
+      </div>
+
+      <!-- Digital Altitude Readout -->
+      <div class="text-center w-full py-0.5">
+        <div class="text-[8px] font-mono tracking-wider uppercase opacity-60">ALTITUDE</div>
+        <div class="flex items-baseline justify-center gap-0.5 mt-0.5">
+          <span id="hud-altitude-val" class="text-lg lg:text-xl font-mono font-black tracking-tight tabular-nums">400,000</span>
+          <span class="text-[9px] font-mono font-bold opacity-70">M</span>
+        </div>
+        <div id="hud-layer-badge" class="mt-1 text-[8px] font-mono font-bold px-2 py-0.5 rounded-full inline-block hud-layer-pill">
+          EXOSPHERE
+        </div>
+      </div>
+
+      <!-- Vertical Descent Flight Gauge Track -->
+      <div class="relative w-full h-24 my-0.5 flex items-center justify-center">
+        <!-- Track Backing -->
+        <div class="w-1 h-full rounded-full hud-gauge-track relative overflow-hidden">
+          <!-- Active Fill Line -->
+          <div id="hud-gauge-fill" class="absolute top-0 left-0 w-full h-0 rounded-full transition-all duration-75 ease-out"></div>
+        </div>
+        <!-- Moving Reticle Marker -->
+        <div id="hud-gauge-marker" class="absolute left-1/2 -translate-x-1/2 w-5 h-2.5 rounded-full flex items-center justify-center shadow-md transition-all duration-75 ease-out pointer-events-none" style="top: 0%;">
+          <div class="w-2.5 h-0.5 rounded-full bg-white shadow-sm"></div>
+        </div>
+        <!-- Section Altitude Milestones (Clickable Jump Anchors) -->
+        <div class="absolute inset-y-0 right-1 flex flex-col justify-between py-0.5 text-[8px] font-mono opacity-50">
+          <a href="#space" class="hover:opacity-100 hover:text-cyan-400 cursor-pointer pointer-events-auto transition-colors" title="400 KM • Deep Space">400K</a>
+          <a href="#skit" class="hover:opacity-100 hover:text-cyan-400 cursor-pointer pointer-events-auto transition-colors" title="50 KM • SKIT Stratosphere">50K</a>
+          <a href="#sky" class="hover:opacity-100 hover:text-cyan-400 cursor-pointer pointer-events-auto transition-colors" title="10 KM • Sky Flight Level">10K</a>
+          <a href="#earth" class="hover:opacity-100 hover:text-cyan-400 cursor-pointer pointer-events-auto transition-colors" title="0 M • Earth Ground">0M</a>
+        </div>
+      </div>
+
+      <!-- Speed / Velocity Telemetry -->
+      <div class="text-center w-full pt-1.5 border-t border-current/15">
+        <div class="text-[7.5px] font-mono tracking-wider uppercase opacity-60">DESCENT SPEED</div>
+        <div id="hud-speed-val" class="text-[11px] font-mono font-extrabold tracking-tight mt-0.5 tabular-nums">
+          28,000 KM/H
+        </div>
+        <div id="hud-regime-val" class="text-[7.5px] font-mono opacity-60 uppercase truncate">
+          ORBITAL VELOCITY
+        </div>
+      </div>
+
+      <!-- SKIT Jaipur Geographic Coordinates -->
+      <div class="text-[7.5px] font-mono opacity-40 text-center tracking-tighter pt-0.5">
+        26.82°N 75.86°E
+      </div>
+
+    </div>
+
+    <!-- Mobile Compact Altitude Pill (< 768px) -->
+    <div class="hud-mobile-pill flex md:hidden items-center gap-2 px-3 py-1.5 rounded-full pointer-events-auto shadow-xl">
+      <span class="w-1.5 h-1.5 rounded-full hud-beacon"></span>
+      <span id="hud-mobile-altitude" class="text-xs font-mono font-extrabold tabular-nums">400,000 M</span>
+      <span class="text-[10px] opacity-40 font-mono">|</span>
+      <span id="hud-mobile-layer" class="text-[10px] font-mono font-bold uppercase">EXOSPHERE</span>
+    </div>
+
+  </aside>
+
 
   <!-- =========================================================================
        EXPANSIVE CONTINUOUS GRADIENT BACKGROUND WRAPPER (~540vh total height)
@@ -538,9 +617,9 @@
       <!-- Minimalist 2D Architectural City Skyline Layer (Clean Vector Landmarks, Zero Cars) -->
       <div class="city-skyline-layer">
         <!-- Desktop & Tablet Skyline (>= 640px) -->
-        <img src="city-skyline-2d.svg?v=47.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img hidden sm:block" />
+        <img src="city-skyline-2d.svg?v=48.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img hidden sm:block" />
         <!-- Mobile Skyline (< 640px) -->
-        <img src="city-skyline-mobile.svg?v=47.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img block sm:hidden" />
+        <img src="city-skyline-mobile.svg?v=48.0" alt="2D Modern Architectural Glass Skyline" class="city-skyline-img block sm:hidden" />
       </div>
 
       <!-- Earth Container -->
@@ -715,7 +794,7 @@
 
   </div>
 
-  <script src="script.js?v=47.0"></script>
+  <script src="script.js?v=48.0"></script>
   <script>
     lucide.createIcons();
   </script>
