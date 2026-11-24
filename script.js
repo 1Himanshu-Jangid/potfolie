@@ -452,60 +452,92 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // LIVE GITHUB CONTRIBUTIONS ENGINE
-  // Silently fetches fresh commits & updates total counter in background
+  // LIVE GITHUB CONTRIBUTIONS ENGINE & HEATMAP RE-RENDERER
+  // Fetches fresh commits, updates counter & re-renders SVG cells in real-time
   // =========================================================================
+  function bindGitTooltips() {
+    const tooltip = document.getElementById('git-tooltip');
+    const cells = document.querySelectorAll('#git-heatmap-cells rect');
+
+    if (tooltip && cells.length > 0) {
+      cells.forEach(cell => {
+        cell.addEventListener('mouseenter', (e) => {
+          const count = cell.getAttribute('data-count') || '0';
+          const dateStr = cell.getAttribute('data-date') || '';
+          let formattedDate = dateStr;
+          if (dateStr) {
+            const parts = dateStr.split('-');
+            if (parts.length === 3) {
+              const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+              const m = parseInt(parts[1], 10) - 1;
+              formattedDate = months[m] + ' ' + parseInt(parts[2], 10) + ', ' + parts[0];
+            }
+          }
+          tooltip.textContent = (count === '0' ? 'No' : count) + ' contributions on ' + formattedDate;
+          
+          const rect = cell.getBoundingClientRect();
+          tooltip.style.left = (rect.left + rect.width / 2) + 'px';
+          tooltip.style.top = (rect.top - 6) + 'px';
+          tooltip.style.opacity = '1';
+        });
+
+        cell.addEventListener('mouseleave', () => {
+          tooltip.style.opacity = '0';
+        });
+      });
+    }
+  }
+
+  function getCellAttrs(level) {
+    switch (level) {
+      case 1:
+        return { fill: '#064e3b', stroke: '#047857', glow: false };
+      case 2:
+        return { fill: '#059669', stroke: '#10b981', glow: false };
+      case 3:
+        return { fill: '#0284c7', stroke: '#38bdf8', glow: true };
+      case 4:
+        return { fill: '#06b6d4', stroke: '#67e8f9', glow: true };
+      default:
+        return { fill: '#1e293b', stroke: 'rgba(255,255,255,0.06)', glow: false };
+    }
+  }
+
   function syncLiveGithub() {
     fetch('https://github-contributions-api.jogruber.de/v4/1Himanshu-Jangid?y=last')
       .then(r => r.json())
       .then(data => {
-        if (data && data.total && typeof data.total.lastYear === 'number') {
+        if (!data) return;
+        if (data.total && typeof data.total.lastYear === 'number') {
           const totalEl = document.getElementById('github-total-contrib');
-          if (totalEl) {
-            totalEl.textContent = data.total.lastYear;
+          if (totalEl) totalEl.textContent = data.total.lastYear;
+        }
+
+        if (Array.isArray(data.contributions) && data.contributions.length > 0) {
+          const cellsGroup = document.getElementById('git-heatmap-cells');
+          if (cellsGroup) {
+            let svgHtml = '';
+            data.contributions.forEach((day, index) => {
+              const weekIndex = Math.floor(index / 7);
+              const dayOfWeek = index % 7;
+              const x = 28 + weekIndex * 13;
+              const y = 18 + dayOfWeek * 13;
+              const style = getCellAttrs(day.level);
+              const glowClass = style.glow ? ' class="git-cell-glow"' : '';
+              svgHtml += '<rect x="' + x + '" y="' + y + '" width="10" height="10" rx="2" fill="' + style.fill + '" stroke="' + style.stroke + '" stroke-width="0.7"' + glowClass + ' data-date="' + day.date + '" data-count="' + day.count + '"><title>' + day.count + ' contributions on ' + day.date + '</title></rect>';
+            });
+            cellsGroup.innerHTML = svgHtml;
+            bindGitTooltips();
           }
         }
       })
       .catch(() => {
-        // Fallback gracefully to pre-rendered 88 commits
+        // Fallback gracefully to pre-rendered cells
       });
   }
+
+  bindGitTooltips();
   syncLiveGithub();
-
-
-  // =========================================================================
-  // GITHUB HEATMAP FLOATING TOOLTIP
-  // =========================================================================
-  const tooltip = document.getElementById('git-tooltip');
-  const cells = document.querySelectorAll('#git-heatmap-cells rect');
-
-  if (tooltip && cells.length > 0) {
-    cells.forEach(cell => {
-      cell.addEventListener('mouseenter', (e) => {
-        const count = cell.getAttribute('data-count') || '0';
-        const dateStr = cell.getAttribute('data-date') || '';
-        let formattedDate = dateStr;
-        if (dateStr) {
-          const parts = dateStr.split('-');
-          if (parts.length === 3) {
-            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            const m = parseInt(parts[1], 10) - 1;
-            formattedDate = months[m] + ' ' + parseInt(parts[2], 10) + ', ' + parts[0];
-          }
-        }
-        tooltip.textContent = (count === '0' ? 'No' : count) + ' contributions on ' + formattedDate;
-        
-        const rect = cell.getBoundingClientRect();
-        tooltip.style.left = (rect.left + rect.width / 2) + 'px';
-        tooltip.style.top = (rect.top - 6) + 'px';
-        tooltip.style.opacity = '1';
-      });
-
-      cell.addEventListener('mouseleave', () => {
-        tooltip.style.opacity = '0';
-      });
-    });
-  }
 
 
   // =========================================================================
